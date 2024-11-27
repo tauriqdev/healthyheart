@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+        <link rel="icon" type="images/jpg" href="images/bot-favicon.jpg">
+
+        <Title> H&H </Title>
+
+        <style>
+            body {
+                margin: 0;
+                font-family: 'Calibri', sans-serif;
+            }
+
+            /* Image container */
+            .image-container {
+                position: relative;
+                width: 100%;
+                height: 430px;
+                overflow: hidden;
+                display: grid;
+                background-color: rgba(0, 0, 0, 0.5);
+            }
+
+            .background-image {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: 1;
+            }
+
+            .grid-layout {
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+                position: relative;
+                z-index: 2;
+                height: 100%;
+                width: 100%;
+                background-color: rgba(0, 0, 0, 0.5);
+            }
+
+            .text-column {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                font-size: 3rem;
+                font-weight: bold;
+                font-family: 'Lato', sans-serif;
+                text-align: center;
+            }
+
+            /* Main container */
+            .main-container {
+                max-width: 1300px;
+                margin: auto auto;
+                padding: 2rem 0;
+            }
+
+            /* Welcome section */
+            .welcome-container {
+                margin-bottom: 80px;
+            }
+
+            .welcome-header {
+                margin: 0;
+                color: rgb(190, 58, 67);
+                font-size: 45px;
+                text-align: center;
+                font-family: 'Lato', sans-serif;
+                margin-bottom: 20px;
+            }
+
+            .welcome-text {
+                margin: 0;
+                font-size: 18px;
+                line-height: 28px;
+            }
+
+            /* Process section */
+            .process-container {}
+
+            .process-header {
+                margin: 0;
+                font-size: 18px;
+                font-weight: 400;
+                margin-bottom: 20px;
+            }
+
+            .process-text {
+                margin: 0;
+                margin-bottom: 10px;
+                font-size: 18px;
+                line-height: 28px;
+                display: block;
+            }
+
+            .process-text:last-child {
+                margin-bottom: 0;
+            }
+
+            /* Custom line */
+            .custom-line {
+                height: 2px;
+                background-color: lightgray;
+                margin-top: 40px;
+                margin-bottom: 40px;
+            }
+
+            /* Step text */
+            .step-text {
+                font-size: 17px;
+                line-height: 28px;
+                margin-bottom: 80px;
+            }
+
+            .step-text-bold {
+                font-weight: 700;
+            }
+
+            /* Calculator section */
+            .calc-container {}
+
+            .calc-header {
+                margin: 0;
+                font-size: 32px;
+                margin-bottom: 20px;
+            }
+
+            /* Form */
+            form {
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            }
+
+            /* Input and select styles */
+            input,
+            select {
+                font-family: 'Calibri', sans-serif;
+                font-size: 16px;
+                padding: 8px;
+                margin-bottom: 10px;
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            /* Style for the buttons section */
+            .button-container {
+                display: flex;
+                gap: 10px;
+            }
+
+            .proceed-btn {
+                padding: 10px 20px;
+                font-size: 1rem;
+                cursor: pointer;
+                background-color: #190a3e;
+                color: white;
+                border: none;
+                border-radius: 4px;
+                transition: background-color 0.3s ease;
+            }
+
+            .proceed-btn:hover {
+                background-color: #4CAF50;
+            }
+
+            /* Style for the Clear button */
+            .clear-btn {
+                padding: 10px 20px;
+                font-size: 1rem;
+                cursor: pointer;
+                background-color: #f44336;
+                color: white;
+                border: none;
+                border-radius: 4px;
+                transition: background-color 0.3s ease;
+            }
+
+            .clear-btn:hover {
+                background-color: #d32f2f;
+            }
+
+            /* Result container styles */
+            .results-container {
+                margin-top: 40px;
+                padding: 20px;
+                background-color: #f9f9f9;
+                border-radius: 8px;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            /* Individual result sections */
+            .result-section {
+                margin-bottom: 20px;
+                padding: 15px;
+                background-color: #fff;
+                border-radius: 6px;
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+            }
+
+            .result-section-bmi-cat {
+                margin-bottom: 0;
+                padding: 15px;
+                background-color: #fff;
+                border-radius: 6px;
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+            }
+
+            /* Title for each result */
+            .result-title {
+                font-size: 1.25rem;
+                font-weight: bold;
+                margin-bottom: 10px;
+                color: #333;
+            }
+
+            /* Body text for results */
+            .result-text {
+                font-size: 1rem;
+                color: #555;
+                line-height: 1.6;
+            }
+
+            /* Bold emphasis within result text */
+            .result-text b {
+                font-weight: bold;
+                color: #333;
+            }
+
+            /* Styling for error messages */
+            .error-message {
+                font-size: 1rem;
+                color: #d9534f;
+                font-weight: bold;
+                text-align: center;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="image-container">
+            <img src="images/main-image.jpg" alt="Health Heart Background" class="background-image">
+            <div class="grid-layout">
+                <div></div>
+                <div></div>
+                <div class="text-column">Welcome to Healthy Heart</div>
+            </div>
+        </div>
+
+        <div class="main-container">
+            <div class="welcome-container">
+                <h2 class="welcome-header">Hello and Welcome!</h2>
+
+                <p class="welcome-text">
+                    Get ready to embark on a journey with our trusty Ai Nurse, Cardia! We're here to guide you through some questions, help you
+                    understand your heart health, and even point you in the direction of the nearest clinic if needed. Let's dive in and take
+                    proactive steps towards a healthier heart, shall we?
+                </p>
+            </div>
+
+            <div class="process-container">
+                <h2 class="process-header">
+                    The process shall take about 5 minutes, and this is what is to be expected:
+                </h2>
+
+                <span class="process-text">
+                    (1) Cardiovascular risk assessment
+                </span>
+
+                <span class="process-text">
+                    (2) BMI
+                </span>
+
+                <span class="process-text">
+                    (3) Lifestyle questions
+                </span>
+
+                <span class="process-text">
+                    (4) General demographic questions
+                </span>
+
+                <span class="process-text">
+                    (5) Referrals
+                </span>
+            </div>
+
+            <div class="custom-line"></div>
+
+            <div class="calc-container">
+                <div class="step-text">
+                    <span class="step-text-bold">Step 1:</span> Complete the form below to find out your potential cardiovascular risk score.
+                </div>
+
+                <h2 class="calc-header">Cardiovascular Risk Calculator</h2>
+            </div>
+
+            <div class="form-container">
+                <form id="myForm">
+                    <p>Enter your sex</p>
+                    <select id="sex" required>
+                        <option value="" disabled selected>Select ----</option>
+                        <option value="M">Male</option>
+                        <option value="F">Female</option>
+                    </select>
+                    <br>
+
+                    <p>Enter Your Age</p>
+                    <input type="number" id="age" placeholder="eg. 35" required>
+                    <br>
+
+                    <p>Enter Systolic Blood Pressure (mmHg)</p>
+                    <input type="number" id="bp" placeholder="eg. 115" required>
+                    <br>
+
+                    <p>Have you received treatment for hypertension?</p>
+                    <select id="hypert" required>
+                        <option value="" disabled selected>Select ----</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                    <br>
+
+                    <p>Do you smoke?</p>
+                    <select id="smoke" required>
+                        <option value="" disabled selected>Select ----</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                    <br>
+
+                    <p>Do you have diabetes?</p>
+                    <select id="diabetes" required>
+                        <option value="" disabled selected>Select an option</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                    <br>
+
+                    <p>What is your height (m)</p>
+                    <input type="number" step="0.01" id="height" placeholder="eg. 1.5" required>
+                    <br>
+
+                    <p>What is your weight? (kg)</p>
+                    <input type="number" id="weight" placeholder="eg. 70" required>
+                    <br><br>
+
+                    <div class="button-container">
+                        <button type="submit" class="proceed-btn">Proceed</button>
+                        <button type="reset" class="clear-btn">Clear</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="results-container">
+                <div class="result-section">
+                    <div class="result-title">Cardiovascular Risk Score</div>
+                    <div id="result1" class="result-text"></div>
+                </div>
+
+                <div class="result-section">
+                    <div class="result-title">Body Mass Index (BMI)</div>
+                    <div id="result2" class="result-text"></div>
+                </div>
+
+                <div class="result-section-bmi-cat">
+                    <div class="result-title">BMI Category</div>
+                    <div id="result3" class="result-text"></div>
+                </div>
+
+                <div class="error-message" id="error-message" style="display: none;">
+                    There was an error calculating the results. Please ensure all fields are filled out correctly.
+                </div>
+            </div>
+
+
+            <div class="custom-line"></div>
+
+            <div>
+                <div class="step-text">
+                    <span class="step-text-bold">Step 2:</span> Now interact with your friendly AI nurse, Cardia, and answer her questions.
+                </div>
+            </div>
+        </div>
+
+        <script>
+            document.getElementById("myForm").addEventListener("submit", function (event) {
+                event.preventDefault();
+                calculateRisk();
+            });
+
+            document.getElementById("myForm").addEventListener("reset", function () {
+                clearResults();
+            });
+
+            function clearResults() {
+                document.getElementById("result1").innerHTML = "";
+                document.getElementById("result2").innerHTML = "";
+                document.getElementById("result3").innerHTML = "";
+                document.getElementById("error-message").style.display = "none";
+            }
+
+            function calculateRisk() {
+                const sex = document.getElementById("sex").value.toLowerCase();
+                const age = parseFloat(document.getElementById("age").value);
+                const bp = parseFloat(document.getElementById("bp").value);
+                const hypert = document.getElementById("hypert").value.toLowerCase();
+                const smoke = document.getElementById("smoke").value.toLowerCase();
+                const diabetes = document.getElementById("diabetes").value.toLowerCase();
+                const height = parseFloat(document.getElementById("height").value);
+                const weight = parseFloat(document.getElementById("weight").value);
+
+                const m_sex = sex === 'm' ? 1 : 0;
+                const m_hypert = hypert === 'yes' ? 1 : 0;
+                const m_smoke = smoke === 'yes' ? 1 : 0;
+                const m_dia = diabetes === 'yes' ? 1 : 0;
+
+                const bmi = weight / (height * height);
+                const m_bmi = Math.log(bmi);
+                const m_age = Math.log(age);
+                const m_bp = Math.log(bp);
+
+                const total1 = m_age * 3.11296 + m_bp * 1.85508 + m_smoke * 0.70953 + m_bmi * 0.79277 + m_dia * 0.5316;
+                const total2 = m_age * 3.11296 + m_bp * 1.92672 + m_smoke * 0.70953 + m_bmi * 0.79277 + m_dia * 0.5316;
+                const total3 = m_age * 2.72107 + m_bp * 2.81291 + m_smoke * 0.61868 + m_bmi * 0.51125 + m_dia * 0.77763;
+                const total4 = m_age * 2.72107 + m_bp * 2.88267 + m_smoke * 0.61868 + m_bmi * 0.51125 + m_dia * 0.77763;
+
+                const risk1 = 1 - Math.pow(0.88431, Math.exp(total1 - 23.9388));
+                const risk2 = 1 - Math.pow(0.88431, Math.exp(total2 - 23.9388));
+                const risk3 = 1 - Math.pow(0.94833, Math.exp(total3 - 26.0145));
+                const risk4 = 1 - Math.pow(0.94833, Math.exp(total4 - 26.0145));
+
+                const result1Str = "Although the following calculation is just an estimate, it is based on formulas that have proven themselves to be accurate and are used as a guide to healthcare professionals. A score of 0% being the lowest and 100% being the highest, based on your answers above we can allude to <b>your 10-year cardiovascular risk score being"
+                let risk;
+                if (m_sex === 1 && m_hypert === 0) {
+                    risk = risk1;
+                } else if (m_sex === 1 && m_hypert === 1) {
+                    risk = risk2;
+                } else if (m_sex === 0 && m_hypert === 0) {
+                    risk = risk3;
+                } else if (m_sex === 0 && m_hypert === 1) {
+                    risk = risk4;
+                } else {
+                    risk = "Error";
+                }
+
+                document.getElementById("result1").innerHTML = risk === "Error"
+                    ? "Error"
+                    : `${result1Str} ${(risk * 100).toFixed(1)}%.</b>`;
+
+                document.getElementById("result2").innerHTML = `Body Mass Index (BMI) is an indicator of total body fat in individuals, but it does not take into account a person's body fat versus lean muscle tissue. Keeping in mind this fact, your BMI is: <b>${bmi.toFixed(2)}</b>`;
+
+                let bmiCategory = "";
+                if (bmi < 18.5) {
+                    bmiCategory = "underweight";
+                } else if (bmi < 25) {
+                    bmiCategory = "healthy";
+                } else if (bmi < 30) {
+                    bmiCategory = "overweight";
+                } else if (bmi < 35) {
+                    bmiCategory = "obese";
+                } else {
+                    bmiCategory = "extremely obese";
+                }
+
+                document.getElementById("result3").innerHTML = `As your BMI is ${bmiCategory}, you are considered <b>${bmiCategory}</b>.`;
+            }
+        </script>
+    </body>
+
+</html>
