@@ -1,0 +1,323 @@
+body {
+    margin: 0;
+    font-family: 'Calibri', sans-serif;
+}
+
+/* Image container */
+.image-container {
+    position: relative;
+    width: 100%;
+    height: 430px;
+    overflow: hidden;
+    display: grid;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.background-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.grid-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.text-column {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 3rem;
+    font-weight: bold;
+    font-family: 'Lato', sans-serif;
+    text-align: center;
+}
+
+/* Main container */
+.main-container {
+    max-width: 1300px;
+    margin: auto auto;
+    padding: 2rem 0;
+}
+
+/* Welcome section */
+.welcome-container {
+    margin-bottom: 80px;
+}
+
+.welcome-header {
+    margin: 0;
+    color: rgb(190, 58, 67);
+    font-size: 45px;
+    text-align: center;
+    font-family: 'Lato', sans-serif;
+    margin-bottom: 20px;
+}
+
+.welcome-text {
+    margin: 0;
+    font-size: 18px;
+    line-height: 28px;
+}
+
+/* Process section */
+.process-container {}
+
+.process-header {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 400;
+    margin-bottom: 20px;
+}
+
+.process-text {
+    margin: 0;
+    margin-bottom: 10px;
+    font-size: 18px;
+    line-height: 28px;
+    display: block;
+}
+
+.process-text:last-child {
+    margin-bottom: 0;
+}
+
+/* Custom line */
+.custom-line {
+    height: 2px;
+    background-color: lightgray;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+/* Step text */
+.step-text {
+    font-size: 17px;
+    line-height: 28px;
+    margin-bottom: 80px;
+}
+
+.step-text-bold {
+    font-weight: 700;
+}
+
+/* Calculator section */
+.calc-container {}
+
+.calc-header {
+    margin: 0;
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+/* Form */
+form {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+/* Input and select styles */
+input,
+select {
+    font-family: 'Calibri', sans-serif;
+    font-size: 16px;
+    padding: 8px;
+    margin-bottom: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Style for the buttons section */
+.button-container {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.proceed-btn {
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: #190a3e;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.proceed-btn:hover {
+    background-color: #4CAF50;
+}
+
+/* Style for the Clear button */
+.clear-btn {
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.clear-btn:hover {
+    background-color: #d32f2f;
+}
+
+/* Result container styles */
+.results-container {
+    margin-top: 40px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Individual result sections */
+.result-section {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.result-section-bmi-cat {
+    margin-bottom: 0;
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* Title for each result */
+.result-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* Body text for results */
+.result-text {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* Bold emphasis within result text */
+.result-text b {
+    font-weight: bold;
+    color: #333;
+}
+
+/* Styling for error messages */
+.error-message {
+    font-size: 1rem;
+    color: #d9534f;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Media queries for mobile responsiveness */
+@media screen and (max-width: 768px) {
+
+    /* Image section */
+    .text-column {
+        font-size: 2rem;
+    }
+
+    .grid-layout {
+        grid-template-columns: 1fr;
+        /* Stack the columns vertically on mobile */
+    }
+
+    .main-container {
+        padding: 1rem;
+    }
+
+    /* Adjusting header font sizes for mobile */
+    .welcome-header {
+        font-size: 36px;
+    }
+
+    .process-header {
+        font-size: 16px;
+    }
+
+    .step-text {
+        font-size: 16px;
+    }
+
+    .calc-header {
+        font-size: 28px;
+    }
+
+    /* Button container adjustment */
+    .button-container {
+        flex-direction: column;
+    }
+
+    .proceed-btn,
+    .clear-btn {
+        width: 100%;
+        /* Make buttons fill the width on mobile */
+    }
+
+    /* Adjust input fields */
+    input,
+    select {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    /* Adjust result sections */
+    .result-section,
+    .result-section-bmi-cat {
+        padding: 10px;
+    }
+
+    .result-title {
+        font-size: 1rem;
+    }
+
+    .result-text {
+        font-size: 0.9rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+
+    /* Further adjust for smaller screens like phones */
+    .welcome-header {
+        font-size: 28px;
+    }
+
+    .text-column {
+        font-size: 1.5rem;
+    }
+
+    .grid-layout {
+        grid-template-columns: 1fr;
+        /* Stack columns for mobile */
+    }
+
+    .main-container {
+        padding: 0.5rem;
+    }
+
+    .result-title {
+        font-size: 1rem;
+    }
+}
